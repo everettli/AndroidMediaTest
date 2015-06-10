@@ -1,16 +1,25 @@
 package com.everett.li;
 
+import com.everett.li.MediaPlayerTest.OnTestResult;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements OnTestResult {
+    
+    private TextView resultTv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        resultTv = (TextView)findViewById(R.id.resultTv);
+        
+        MediaPlayerTest test = new MediaPlayerTest(getApplicationContext(), this);
+        test.run();
     }
 
     @Override
@@ -30,5 +39,16 @@ public class MainActivity extends Activity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onResult(final String result) {
+        runOnUiThread(new Runnable() {
+            
+            @Override
+            public void run() {
+                resultTv.append(result);
+            }
+        });
     }
 }
