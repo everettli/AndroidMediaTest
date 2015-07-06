@@ -1,7 +1,9 @@
-package com.everett.li;
+package github.everett.li;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -40,6 +42,18 @@ public class TSLog {
             sb.append("\n");
         }
         return sb;
+    }
+    
+    public static void reset(){
+        sorted_map.clear();
+        mMap.clear();
+    }
+    
+    public static List<Entry<String,Period>> getAllTs(){
+        sorted_map.putAll(mMap);
+        List<Entry<String,Period>> list = new ArrayList<Entry<String,Period>>();
+        list.addAll(sorted_map.entrySet());
+        return list;
     }
 }
 
@@ -95,6 +109,10 @@ class Period {
 
     public void setEndTs(long endTs) {
         this.endTs = endTs;
+    }
+    
+    public long getPeriod(){
+        return endTs - startTs;
     }
     
     @Override
