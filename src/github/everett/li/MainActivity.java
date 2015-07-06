@@ -89,7 +89,7 @@ public class MainActivity extends Activity {
             mContext = context;
             mList = list;
         }
-
+        
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             View rowView = convertView;
@@ -108,6 +108,7 @@ public class MainActivity extends Activity {
             Entry<String, Period> entry = mList.get(position);
             String key = entry.getKey();
             holder.key.setText(key);
+            holder.key.setSelected(true);
             holder.period.setText(entry.getValue().getPeriod()+"ms");
             holder.start.setText("start:"+entry.getValue().getStartTs());
             holder.end.setText("end:"+entry.getValue().getEndTs());

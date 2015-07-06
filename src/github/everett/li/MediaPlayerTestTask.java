@@ -32,7 +32,7 @@ public class MediaPlayerTestTask extends FutureTask<List<Entry<String, Period>>>
 
                 @Override
                 public void onCompletion(MediaPlayer mp) {
-                    TSLog.endTs("player play");
+                    TSLog.endTs("player play(wav length:814ms)");
                     synchronized (player) {
                         player.notify();
                     }
@@ -40,7 +40,7 @@ public class MediaPlayerTestTask extends FutureTask<List<Entry<String, Period>>>
                 }
             });
             try {
-                TSLog.startTs("player play");
+                TSLog.startTs("player play(wav length:814ms)");
                 player.start();
                 synchronized (player) {
                     try {
